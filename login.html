@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div class="topnav">
+	<a href="register.html" style="float: right; font-size: 14pt;">Don't have an account? Sign-Up Here</a>
+</div>
+
+<div id="logindiv">
+	<form id="login" method="post" v-on:submit.prevent>
+		<h1> Login for Parents & Students</h1>
+		<label for="username">Username:</label>
+		<input required type="username" id="username" v-model="username">
+		<br><br>
+		<label for="password">Password:</label>
+		<input required type="password" id="password" v-model="password">
+		<br><br>
+		<button v-on:click="onSubmit">Submit</button>
+	</form>
+</div>
+<div id="loginadmindiv">
+	<form id="loginadmin" method="post" v-on:submit.prevent>
+		<h1> Login for Administrators</h1>
+		<label for="username">Username:</label>
+		<input required type="username" id="usernameadmin" v-model="usernameadmin">
+		<br><br>
+		<label for="password">Password:</label>
+		<input required type="password" id="passwordadmin" v-model="passwordadmin">
+		<br><br>
+		<button v-on:click="onSubmit">Submit</button>
+	</form>
+</div>
+	<script src="login.js" type="text/javascript"></script>
+</body>
+<style>
+	* {
+		box-sizing: border-box;
+		/*Addition of web font to the web page*/
+		font-family: sans-serif;
+		font-size: 24px;
+	}
+
+	html {
+		background: url(background.png) no-repeat center center fixed;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
+
+	body{
+		margin: 0;
+
+	}
+
+	#logindiv{
+		float: left;
+		margin-top: 15%;
+		margin-left: 10%
+	}
+	#loginadmindiv{
+		float: right;
+		margin-top: 15%;
+		margin-right: 10%
+	}
+
+	/* Style the top navigation bar */
+	.topnav {
+		overflow: hidden;
+		background: rgba(102,105,105,0.5);
+		height: auto;
+	}
+
+	/* Style the topnav links */
+	.topnav a {
+		float: left;
+		display: block;
+		color: #f2f2f2;
+		text-align: center;
+		padding: 14px 16px;
+		text-decoration: none;
+	}
+
+	/* Change color on hover */
+	.topnav a:hover {
+		color: #34e5ce;
+	}
+</style>
+</html>
