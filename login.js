@@ -7,6 +7,7 @@ var loginApp = new Vue({
     methods: {
         onSubmit: function () {
             var users = '';
+            var isuserauser = false;
             var newUser = this.username;
             var passcheck = this.password;
 
@@ -18,37 +19,8 @@ var loginApp = new Vue({
                 if (users.some(function (user) {
                     return user.username === newUser & user.password === passcheck
                 })) {
-                    window.location.href = 'userprofile.html' + '#' + newUser
-                } else {
-                    alert('Incorrect credentials');
-                }
-            }
-        }
-    }
-});
-
-var loginadmin = new Vue({
-    el: '#loginadmin',
-    data: {
-        usernameadmin: '',
-        passwordadmin: '',
-    },
-    methods: {
-        onSubmit: function () {
-            var admin = '';
-            var newUser = this.usernameadmin;
-            var passcheck = this.passwordadmin;
-
-            if (localStorage.getItem('admin')) { // 'users' is an array of objects
-                admin = JSON.parse(localStorage.getItem('admin'))
-            }
-
-            if (admin) {
-                if (admin.some(function (user) {
-                    return user.usernameadmin === newUser & user.passwordadmin === passcheck
-                })) {
-                    window.location.href = 'userprofile.html' + '#' + newUser
-
+                    window.location.href = 'userprofile.html' + '#' + newUser;
+                    return isuserauser === true;
                 } else {
                     alert('Incorrect credentials');
                 }

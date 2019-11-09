@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<script src="login.js" type="text/javascript"></script>
 	<meta charset="UTF-8"> <link rel = "stylesheet" type = "text/css" href = "style.css" />
 	<title>Home Page</title>
 </head>
@@ -11,6 +12,12 @@
 	<a href="login.html" style="float: right; font-size: 14pt;">Logout</a>
 	<a href="activities.html" style="float: right; font-size: 14pt;">View Activities</a>
 </div>
+
+<h1>Welcome </h1><span id="result"></span><h1> !</h1>
+<script>
+	document.getElementById("result").innerHTML=localStorage.getItem("textvalue");
+</script>
+
 </body>
 
 <style>
@@ -57,4 +64,5 @@
 		color: #34e5ce;
 	}
 </style>
+
 </html>
