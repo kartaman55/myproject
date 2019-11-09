@@ -11,7 +11,7 @@
 	<a href="login.html" style="float: right; font-size: 14pt;">Already have an account? Login here</a>
 </div>
 
-<form id="signup">
+<form id="signup" method="post"  v-on:submit.prevent>
 	<h1>Sign up</h1>
 	<label for="email">Email:</label>
 	<input required type="email" id="email" v-model='email'>

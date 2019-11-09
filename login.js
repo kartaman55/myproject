@@ -7,7 +7,6 @@ var loginApp = new Vue({
     methods: {
         onSubmit: function () {
             var users = '';
-            var isuserauser = false;
             var newUser = this.username;
             var passcheck = this.password;
 
@@ -20,11 +19,16 @@ var loginApp = new Vue({
                     return user.username === newUser & user.password === passcheck
                 })) {
                     window.location.href = 'userprofile.html' + '#' + newUser;
-                    return isuserauser === true;
                 } else {
                     alert('Incorrect credentials');
                 }
             }
+                var usercheck=document.getElementById("username").value;
+
+                if (usercheck === "admin"){
+                    var admindis = "Administrator";
+                    window.location.href = 'adminprofile.html';
+                }
         }
     }
 });

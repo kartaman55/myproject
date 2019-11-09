@@ -25,7 +25,13 @@
 	<script>
         function passvalues() {
             var usercheck=document.getElementById("username").value;
-            localStorage.setItem("textvalue",usercheck);
+
+            if (usercheck === "admin"){
+                var admindis = "Administrator";
+                localStorage.setItem("textvalue",admindis);
+            } else {
+                localStorage.setItem("textvalue",usercheck);
+            }
             return false;
         }
 	</script>

@@ -31,6 +31,8 @@ var signupApp = new Vue({
 
                 users.push({'email': newEmail, 'username': newUser, 'password': this.password});
                 localStorage.setItem('users', JSON.stringify(users));
+                alert("You have registered! Press OK to go to the Login Page.");
+                window.location.href = 'login.html';
             } else {
                 users = [{'email': newEmail, 'username': newUser, 'password': this.password}];
                 localStorage.setItem('users', JSON.stringify(users));
