@@ -13,7 +13,7 @@
 
 <div id="logindiv">
 	<form id="login" method="post" v-on:submit.prevent>
-		<h1> Login for Parents & Students</h1>
+		<h1> Login </h1>
 		<label for="username">Username:</label>
 		<input required type="username" id="username" v-model="username">
 		<br><br>
@@ -22,17 +22,32 @@
 		<br><br>
 		<button onclick="passvalues()" v-on:click="onSubmit">Submit</button>
 	</form>
+
+	<div id="adminlogindiv">
+		<form id="adminlogin" method="post" v-on:submit.prevent>
+			<h1> Admin Login </h1>
+			<label for="username">Username:</label>
+			<input required type="username" id="usernameadmin" v-model="usernameadmin">
+			<br><br>
+			<label for="password">Password:</label>
+			<input required type="password" id="passwordadmin" v-model="passwordadmin">
+			<br><br>
+			<button onclick="passvaluesadmin()" v-on:click="onSubmit">Submit</button>
+		</form>
 	<script>
         function passvalues() {
             var usercheck=document.getElementById("username").value;
-
-            if (usercheck === "admin"){
-                var admindis = "Administrator";
-                localStorage.setItem("textvalue",admindis);
-            } else {
                 localStorage.setItem("textvalue",usercheck);
+        }
+
+        function passvaluesadmin() {
+            var usercheck = document.getElementById("usernameadmin").value;
+
+            if (usercheck === "admin") {
+                var admindis = "Welcome, Administrator";
+                localStorage.setItem("textvalue", admindis);
+                return false;
             }
-            return false;
         }
 	</script>
 </div>
@@ -60,15 +75,10 @@
 	}
 
 	#logindiv{
-		float: left;
 		margin-top: 15%;
-		margin-left: 10%
+		margin-left: 40%
 	}
-	#loginadmindiv{
-		float: right;
-		margin-top: 15%;
-		margin-right: 10%
-	}
+
 
 	/* Style the top navigation bar */
 	.topnav {

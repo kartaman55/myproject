@@ -3,6 +3,9 @@
 <head>
 	<script src="login.js" type="text/javascript"></script>
 	<meta charset="UTF-8"> <link rel = "stylesheet" type = "text/css" href = "style.css" />
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
+	<script src="https://unpkg.com/vue-ls@2.3.3/dist/vue-ls.min.js"></script>
 	<title>Home Page</title>
 </head>
 <body>
@@ -12,12 +15,63 @@
 	<a href="login.html" style="float: right; font-size: 14pt;">Logout</a>
 </div>
 
-<h1>Welcome </h1><span id="result"></span><h1> !</h1>
-<p>As an admin you can make changed to events and activities!</p>
-<script>
-	document.getElementById("result").innerHTML=localStorage.getItem("textvalue");
-</script>
+<div id="top">
+	<p id="result"></p>
+	<p>As an admin you can make changed to events and activities!</p>
+</div>
 
+<div id="activitieslist">
+	<input type="text" v-model="todo.title" placeholder="input todo" v-on:keyup.enter="addTodo">
+	<ul>
+		<li v-for ="(todo, index) in todos">
+			<input v-if="todo.edit" type="text" v-model="todo.title">
+			<span v-else>{{todo.title}}</span>
+			<button @click="removeTodo(index)">&#10006;</button>
+			<button @click="todo.edit = !todo.edit">&#9998;</button>
+		</li>
+	</ul>
+
+	<script>
+        document.getElementById("result").innerHTML=localStorage.getItem("textvalue");
+
+        Vue.use(VueLocalStorage);
+        new Vue({
+            el: '#activitieslist',
+            data(){
+                return {
+                    todo: {
+                        title: null,
+                        edit: false
+                    },
+                    todos: [],
+                }
+            },
+            watch: {
+                todos: function(val) {
+                    this.$ls.set('todos', val)
+                }
+            },
+            mounted(){
+                this.todos = this.$ls.get('todos', this.todos);
+                var _this = this;
+                this.$ls.on('todos', function(val) {
+                    _this.todos = val;
+                });
+            },
+            methods:{
+                addTodo(){
+                    var vm = this;
+                    vm.todos.push({title:vm.todo.title,edit: false });
+                    vm.todo = []
+                },
+                removeTodo(index){
+                    this.todos.splice(index, 1)
+                }
+            }
+        })
+	</script>
+
+</div>
 </body>
 
 <style>
@@ -26,11 +80,11 @@
 		box-sizing: border-box;
 		/*Addition of web font to the web page*/
 		font-family: sans-serif;
-		font-size: 48px;
+		font-size: 24px;
 	}
 
 	html {
-		background: url(building.jpg) no-repeat center center fixed;
+		background: url(background.png) no-repeat center center fixed;
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
@@ -39,7 +93,6 @@
 
 	body{
 		margin: 0;
-
 	}
 
 	/* Style the top navigation bar */
@@ -62,6 +115,18 @@
 	/* Change color on hover */
 	.topnav a:hover {
 		color: #34e5ce;
+	}
+
+	#top{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	#activitieslist{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
 	}
 </style>
 
