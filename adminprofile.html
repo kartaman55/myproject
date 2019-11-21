@@ -17,19 +17,42 @@
 
 <div id="top">
 	<p id="result"></p>
-	<p>As an admin you can make changed to events and activities!</p>
+	<p>As an admin you can make changes to events and activities! Press enter to create activity.</p>
 </div>
 
 <div id="activitieslist">
-	<input type="text" v-model="todo.title" placeholder="input todo" v-on:keyup.enter="addTodo">
+	<input type="text" v-model="todo.title" placeholder="Input activity title" v-on:keyup.enter="addTodo">
+	<input type="text" v-model="todo.price" placeholder="Input activity price" v-on:keyup.enter="addTodo">
+	<input type="text" v-model="todo.location" placeholder="Input activity locaiton" v-on:keyup.enter="addTodo">
+	<input type="text" v-model="todo.time" placeholder="Input activity time" v-on:keyup.enter="addTodo">
+	<input type="text" v-model="todo.duration" placeholder="Input activity duration" v-on:keyup.enter="addTodo">
 	<ul>
+
 		<li v-for ="(todo, index) in todos">
-			<input v-if="todo.edit" type="text" v-model="todo.title">
-			<span v-else>{{todo.title}}</span>
-			<button @click="removeTodo(index)">&#10006;</button>
-			<button @click="todo.edit = !todo.edit">&#9998;</button>
+
+			<input type="text" v-model="todo.title"/>
+
+			<input type="text" v-model="todo.price"/>
+
+			<input type="text" v-model="todo.location"/>
+
+			<input type="text" v-model="todo.time"/>
+
+			<input type="text" v-model="todo.duration"/>
+
+			<ul>
+				<span> <br> Title: {{todo.title}}<br>Price: {{todo.price}}<br>Location: {{todo.location}}<br>Time: {{todo.time}}<br>Duration: {{todo.duration}} </span>
+			</ul>
+				<br>
+			<ul>
+				<button @click="removeTodo(index)">&#10060; Delete Activity</button>
+				<button @click="editTodo(index)">&#128190; Save Activity </button>
+
+			</ul>
+			<br><br><br>
 		</li>
 	</ul>
+</div>
 
 	<script>
         document.getElementById("result").innerHTML=localStorage.getItem("textvalue");
@@ -41,6 +64,10 @@
                 return {
                     todo: {
                         title: null,
+	                    price: null,
+	                    location: null,
+	                    time: null,
+	                    duration: null,
                         edit: false
                     },
                     todos: [],
@@ -61,8 +88,17 @@
             methods:{
                 addTodo(){
                     var vm = this;
-                    vm.todos.push({title:vm.todo.title,edit: false });
-                    vm.todo = []
+                    vm.todos.push({title:vm.todo.title, price:vm.todo.price, location:vm.todo.location, time:vm.todo.time, duration:vm.todo.duration,edit: false });
+                },
+                editTodo(text, index) {
+                    this.$set(this.todos, index, {
+                        title: text,
+                        price: text,
+                        location: text,
+                        time: text,
+                        duration: text,
+                        edit: false
+                    });
                 },
                 removeTodo(index){
                     this.todos.splice(index, 1)
@@ -80,7 +116,7 @@
 		box-sizing: border-box;
 		/*Addition of web font to the web page*/
 		font-family: sans-serif;
-		font-size: 24px;
+		font-size: 20px;
 	}
 
 	html {

@@ -2,21 +2,77 @@
 <html lang="en">
 <head>
 	<script src="login.js" type="text/javascript"></script>
-	<meta charset="UTF-8"> <link rel = "stylesheet" type = "text/css" href = "style.css" />
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="style.css"/>
 	<title>Home Page</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.js"></script>
+	<script src="https://unpkg.com/vue-ls@2.3.3/dist/vue-ls.min.js"></script>
 </head>
 <body>
 
 <div class="topnav">
-	<a href="index.html" style="font-size: 18pt">App</a>
+	<a href="userprofile.html" style="font-size: 18pt">App</a>
 	<a href="login.html" style="float: right; font-size: 14pt;">Logout</a>
-	<a href="activities.html" style="float: right; font-size: 14pt;">View Activities</a>
 </div>
 
-<h1>Welcome </h1><span id="result"></span><h1> !</h1>
+<h1>Welcome, <span id="result"></span></h1>
 <script>
-	document.getElementById("result").innerHTML=localStorage.getItem("textvalue");
+    document.getElementById("result").innerHTML = localStorage.getItem("textvalue");
 </script>
+
+<div id="activitieslist">
+<ul>
+	<li v-for="(todo, index) in todos">
+		<span v-if>Title: {{todo.title}}<br>Price: {{todo.price}}<br>Location: {{todo.location}}<br>Time: {{todo.time}}<br>Duration: {{todo.duration}}<br><br><br>Rating: {{todo.stars}}<br><br></span>
+		<input type="text" v-model="todo.stars" placeholder="Enter Activity Rating" v-on:keyup.enter="addStars"><br><br>
+		<br>
+	</li>
+</ul>
+
+
+	<script>
+        document.getElementById("result").innerHTML = localStorage.getItem("textvalue");
+
+        Vue.use(VueLocalStorage);
+        new Vue({
+            el: '#activitieslist',
+            data() {
+                return {
+                    todo: {
+                        title: null,
+                        price: null,
+                        location: null,
+                        time: null,
+                        duration: null,
+                        stars: null,
+	                    comment: null,
+                        edit: false
+                    },
+                    todos: [],
+                }
+            },
+            watch: {
+                todos: function (val) {
+                    this.$ls.set('todos', val)
+                }
+            },
+            mounted() {
+                this.todos = this.$ls.get('todos', this.todos);
+                var _this = this;
+                this.$ls.on('todos', function (val) {
+                    _this.todos = val;
+                });
+            },
+            methods: {
+                addStarts() {
+                    var vm = this;
+                    vm.todos.push({stars: vm.todo.stars});
+                },
+            }
+        });
+	</script>
+
+</div>
 
 </body>
 
@@ -26,7 +82,7 @@
 		box-sizing: border-box;
 		/*Addition of web font to the web page*/
 		font-family: sans-serif;
-		font-size: 48px;
+		font-size: 24px;
 	}
 
 	html {
@@ -37,7 +93,7 @@
 		background-size: cover;
 	}
 
-	body{
+	body {
 		margin: 0;
 
 	}
@@ -45,7 +101,7 @@
 	/* Style the top navigation bar */
 	.topnav {
 		overflow: hidden;
-		background: rgba(102,105,105,0.5);
+		background: rgba(102, 105, 105, 0.5);
 		height: auto;
 	}
 
