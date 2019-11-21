@@ -14,12 +14,12 @@ var signupApp = new Vue({
                 users = JSON.parse(localStorage.getItem('users'));
             }
 
-                if (users.some(function (user) {
-                    return user.email === newEmail
-                })) {
-                    alert('Email already exists!');
-                    return;
-                }
+            if (users.some(function (user) {
+                return user.email === newEmail
+            })) {
+                alert('Email already exists!');
+                return;
+            }
 
             if (users) {
                 if (users.some(function (user) {
