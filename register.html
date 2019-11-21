@@ -11,7 +11,7 @@
 	<a href="login.html" style="float: right; font-size: 14pt;">Already have an account? Login here</a>
 </div>
 
-<form id="signup" method="post" v-on:submit.prevent>
+<form id="signup" method="post"  v-on:submit.prevent>
 	<h1>Sign up</h1>
 	<label for="email">Email:</label>
 	<input required type="email" id="email" v-model='email'>
@@ -22,7 +22,7 @@
 	<label for="password">Password:</label>
 	<input required type="password" id="password" v-model='password'>
 	<br><br>
-	<button v-on:click='onSubmit'>Submit</button>
+	<button v-on:click='onSubmit'>submit</button>
 </form>
 </body>
 <style>
@@ -42,21 +42,21 @@
 		background-size: cover;
 	}
 
-	body {
+	body{
 		margin: 0;
 
 	}
 
-	#signup {
+	#signup{
 		position: center;
 		margin-top: 15%;
-		margin-left: 39%
+		margin-left: 40%
 	}
 
 	/* Style the top navigation bar */
 	.topnav {
 		overflow: hidden;
-		background: rgba(102, 105, 105, 0.5);
+		background: rgba(102,105,105,0.5);
 		height: auto;
 	}
 

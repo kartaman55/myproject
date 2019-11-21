@@ -30,10 +30,6 @@
 		</li>
 	</ul>
 
-	<div class="card" v-for="todo in filteredList" style="border: 2px solid blue; margin-bottom: 10px; width: 13%; position: relative; padding: 10px; margin-left: 39%;">
-		<span>Activity Title: {{todo.title}}<br>Price: {{todo.price}}<br>Location: {{todo.location}}<br>Time: {{todo.time}}<br>Duration: {{todo.duration}}</span>
-	</div>
-
 	<script>
         document.getElementById("result").innerHTML = localStorage.getItem("textvalue");
 

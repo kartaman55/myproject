@@ -23,6 +23,12 @@
 		<br><br>
 		<button onclick="passvalues()" v-on:click="onSubmit">Submit</button>
 	</form>
+	<script>
+        function passvalues() {
+            var usercheck = document.getElementById("username").value;
+            localStorage.setItem("textvalue", usercheck);
+        }
+	</script>
 
 </div>
 <script src="login.js" type="text/javascript"></script>
