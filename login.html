@@ -9,6 +9,7 @@
 
 <div class="topnav">
 	<a href="register.html" style="float: right; font-size: 14pt;">Don't have an account? Sign-Up Here</a>
+	<a href="loginadmin.html" style="float: right; font-size: 14pt;">Admin Login</a>
 </div>
 
 <div id="logindiv">
@@ -23,34 +24,6 @@
 		<button onclick="passvalues()" v-on:click="onSubmit">Submit</button>
 	</form>
 
-	<div id="adminlogindiv">
-		<form id="adminlogin" method="post" v-on:submit.prevent>
-			<h1> Admin Login </h1>
-			<label for="username">Username:</label>
-			<input required type="username" id="usernameadmin" v-model="usernameadmin">
-			<br><br>
-			<label for="password">Password:</label>
-			<input required type="password" id="passwordadmin" v-model="passwordadmin">
-			<br><br>
-			<button onclick="passvaluesadmin()" v-on:click="onSubmit">Submit</button>
-		</form>
-		<script>
-            function passvalues() {
-                var usercheck = document.getElementById("username").value;
-                localStorage.setItem("textvalue", usercheck);
-            }
-
-            function passvaluesadmin() {
-                var usercheck = document.getElementById("usernameadmin").value;
-
-                if (usercheck === "admin") {
-                    var admindis = "WeLcome, Administrator";
-                    localStorage.setItem("textvalue", admindis);
-                    return false;
-                }
-            }
-		</script>
-	</div>
 </div>
 <script src="login.js" type="text/javascript"></script>
 </body>
@@ -78,8 +51,8 @@
 	}
 
 	#logindiv {
-		margin-top: 10%;
-		margin-left: 35%
+		margin-top: 15%;
+		margin-left: 39%
 	}
 
 
